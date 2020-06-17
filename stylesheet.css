@@ -1,0 +1,77 @@
+body {
+	clip: auto
+	alignment-adjust: central, auto;
+}
+
+img { /* Alle Bilder bekommen einen schönen Rahmen. */
+  border-radius:12px;
+  border: solid 3px #87CEEB ;
+  padding: 1px;
+  margin-top: 4em;
+}
+
+intro {
+	}
+	
+div {
+	font-family: Garamond, serif;
+	font-size: 120%;
+	column-gap: length;
+	text-align: center;
+	color: #87CEEB;
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+button {
+	box-shadow:inset 0px 1px 0px 0px #bee2f9;
+	background:linear-gradient(to bottom, #87cfeb 5%, #468ccf 100%);
+	background-color:#87cfeb;
+	border-radius:12px;
+	border:1px solid #3866a3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: Garamond, serif;
+	font-size: 105%;
+	font-weight:bold;
+	padding: 0.5em 2em;
+	margin-left: 0.4em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #7cacde;
+}
+button:hover {
+	background:linear-gradient(to bottom, #468ccf 5%, #87cfeb 100%);
+	background-color:#468ccf;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+
+
+/*{
+	
+	font-family: Garamond, serif;
+	font-size: 105%;
+	background-color: #FFFFFF;
+	color: #87CEEB; font-weight: bold;
+	margin-left: 0.4em;
+	padding-top: 0.5em;
+	padding-right: 2em;
+	padding-bottom: 0.5em;
+	padding-left: 2em;
+	}*/
+
+input {
+	border-radius:12px;
+	margin-top: 1%;
+	padding-top: 0.5em;
+	padding-right: 2em;
+	padding-bottom: 0.5em;
+	padding-left: 2em;
+	font-family: Garamond, serif;
+	font-size: 105%;
+	border: solid 2px #87CEEB;
+	}
