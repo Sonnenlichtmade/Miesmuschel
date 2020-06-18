@@ -48,15 +48,35 @@ getApi: path
 
 !Miesmuschel methodsFor: 'starting'!
 
-augmentPage
-| stylesheet intro button input image |
+antwortFuer: aString
+	| antwort antwortliste index random|
+	antwortliste := {'Heute nicht...'. 'Ja, Mann!!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.
+	random := Random new.
+	index := (random next * 3 + 1) rounded.
+	antwort := antwortliste at: index.
+	^{
+		Silk DIV: aString.
+		Silk DIV: antwort}.
+!
 
-stylesheet := Silk LINK: {'rel'->'stylesheet'. 'href'->'style.css'}.
+augmentPage
+| intro button input image antwort |
+
 image := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.
 intro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
 input := intro INPUT: {'ID'->'Eingabe'}.
 button := intro BUTTON: 'Klick'.
-button on: #click bind: [intro DIV: input element value. intro DIV: 'Auf gar keinen Fall!!']
+antwort := intro DIV.
+input on: #keydown bind: [:event | 
+	event keyCode = 13 ifTrue: [
+		antwort resetContents.
+		antwort << (self antwortFuer: input element value).
+		input element value: ''] ].
+		
+button on: #click bind: [
+	antwort resetContents.
+	antwort << (self antwortFuer: input element value).
+	input element value: '']
 ! !
 
 !Miesmuschel class methodsFor: 'starting'!

@@ -42,67 +42,133 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
+selector: "antwortFuer:",
+protocol: "starting",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["aString"],
+source: "antwortFuer: aString\x0a\x09| antwort antwortliste index random|\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.\x0a\x09random := Random new.\x0a\x09index := (random next * 3 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09^{\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: antwort}.",
+referencedClasses: ["Random", "Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["new", "rounded", "+", "*", "next", "at:", "DIV:"]
+}, function ($methodClass){ return function (aString){
+var self=this,$self=this;
+var antwort,antwortliste,index,random;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+antwortliste=["Heute nicht...","Ja, Mann!","Auf keinen Fall.","Frag mich morgen nochmal."];
+random=$recv($globals.Random)._new();
+index=$recv($recv($recv($recv(random)._next()).__star((3))).__plus((1)))._rounded();
+antwort=$recv(antwortliste)._at_(index);
+return [[$recv($globals.Silk)._DIV_(aString)
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["DIV:"]=1
+//>>excludeEnd("ctx");
+][0],$recv($globals.Silk)._DIV_(antwort)];
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"antwortFuer:",{aString:aString,antwort:antwort,antwortliste:antwortliste,index:index,random:random})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
 selector: "augmentPage",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "augmentPage\x0a| stylesheet intro button input image |\x0a\x0astylesheet := Silk LINK: {'rel'->'stylesheet'. 'href'->'style.css'}.\x0aimage := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0aintro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0ainput := intro INPUT: {'ID'->'Eingabe'}.\x0abutton := intro BUTTON: 'Klick'.\x0abutton on: #click bind: [intro DIV: input element value. intro DIV: 'Auf gar keinen Fall!']",
+source: "augmentPage\x0a| intro button input image antwort |\x0a\x0aimage := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0aintro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0ainput := intro INPUT: {'ID'->'Eingabe'}.\x0abutton := intro BUTTON: 'Klick'.\x0aantwort := intro DIV.\x0ainput on: #keydown bind: [:event | \x0a\x09event keyCode = 13 ifTrue: [\x0a\x09\x09antwort resetContents.\x0a\x09\x09antwort << (self antwortFuer: input element value).\x0a\x09\x09input element value: ''] ].\x0a\x09\x09\x0abutton on: #click bind: [\x0a\x09antwort resetContents.\x0a\x09antwort << (self antwortFuer: input element value).\x0a\x09input element value: '']",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["LINK:", "->", "IMG:", "DIV:", "new", "INPUT:", "BUTTON:", "on:bind:", "value", "element"]
+messageSends: ["IMG:", "->", "DIV:", "new", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "resetContents", "<<", "antwortFuer:", "value", "element", "value:"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
-var stylesheet,intro,button,input,image;
+var intro,button,input,image,antwort;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-stylesheet=$recv($globals.Silk)._LINK_([["rel".__minus_gt("stylesheet")
+image=$recv($globals.Silk)._IMG_([["src".__minus_gt("https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=1
 //>>excludeEnd("ctx");
-][0],["href".__minus_gt("style.css")
+][0],["alt".__minus_gt("Miesmuschel")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=2
 //>>excludeEnd("ctx");
 ][0]]);
-image=$recv($globals.Silk)._IMG_([["src".__minus_gt("https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=3
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("Miesmuschel")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=4
-//>>excludeEnd("ctx");
-][0]]);
-intro=[$recv($recv($globals.Silk)._new())._DIV_([image,[$recv($globals.Silk)._DIV_("Gib eine Ja/Nein-Frage ein:")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["DIV:"]=2
-//>>excludeEnd("ctx");
-][0]])
+intro=[$recv($recv($globals.Silk)._new())._DIV_([image,$recv($globals.Silk)._DIV_("Gib eine Ja/Nein-Frage ein:")])
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["DIV:"]=1
 //>>excludeEnd("ctx");
 ][0];
 input=$recv(intro)._INPUT_(["ID".__minus_gt("Eingabe")]);
 button=$recv(intro)._BUTTON_("Klick");
+antwort=$recv(intro)._DIV();
+[$recv(input)._on_bind_("keydown",(function(event){
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx2) {
+//>>excludeEnd("ctx");
+if($core.assert($recv($recv(event)._keyCode()).__eq((13)))){
+[$recv(antwort)._resetContents()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["resetContents"]=1
+//>>excludeEnd("ctx");
+][0];
+[$recv(antwort).__lt_lt([$self._antwortFuer_([$recv([$recv(input)._element()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["element"]=1
+//>>excludeEnd("ctx");
+][0])._value()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["value"]=1
+//>>excludeEnd("ctx");
+][0])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["antwortFuer:"]=1
+//>>excludeEnd("ctx");
+][0])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["<<"]=1
+//>>excludeEnd("ctx");
+][0];
+return [$recv([$recv(input)._element()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["element"]=2
+//>>excludeEnd("ctx");
+][0])._value_("")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx2.sendIdx["value:"]=1
+//>>excludeEnd("ctx");
+][0];
+}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx2) {$ctx2.fillBlock({event:event},$ctx1,1)});
+//>>excludeEnd("ctx");
+}))
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["on:bind:"]=1
+//>>excludeEnd("ctx");
+][0];
 $recv(button)._on_bind_("click",(function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-[$recv(intro)._DIV_($recv($recv(input)._element())._value())
+$recv(antwort)._resetContents();
+$recv(antwort).__lt_lt($self._antwortFuer_($recv([$recv(input)._element()
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["DIV:"]=3
+,$ctx2.sendIdx["element"]=3
 //>>excludeEnd("ctx");
-][0];
-return $recv(intro)._DIV_("Auf gar keinen Fall!");
+][0])._value()));
+return $recv($recv(input)._element())._value_("");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
+}, function($ctx2) {$ctx2.fillBlock({},$ctx1,3)});
 //>>excludeEnd("ctx");
 }));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"augmentPage",{stylesheet:stylesheet,intro:intro,button:button,input:input,image:image})});
+}, function($ctx1) {$ctx1.fill(self,"augmentPage",{intro:intro,button:button,input:input,image:image,antwort:antwort})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
