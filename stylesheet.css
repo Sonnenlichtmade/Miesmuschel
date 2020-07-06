@@ -8,15 +8,30 @@ body {
 	alignment-adjust: central, auto;
 }
 
+#blase {
+	width: 25%;
+	height: 25%;
+	position: absolute;
+	z-index: 1;
+	left: 1100px;
+	top: 90px;
+}
 
-
-img { /* Alle Bilder bekommen einen schönen Rahmen. */
+#muschel {
 	width: 50%;
 	height: 50%;
 	border-radius:12px;
 	border: solid 3px #DB7093 ;
 	padding: 1px;
-	margin-top: 4em;
+	margin-top: 4em; 
+}
+
+#answer {
+	position: absolute;
+	z-index: 2;
+	left: 1190px;
+	top: 125px;
+	color: #DB7093;
 }
 
 intro {

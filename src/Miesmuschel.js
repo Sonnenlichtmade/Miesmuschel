@@ -46,17 +46,30 @@ selector: "antwortFuer:",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "antwortFuer: aString\x0a\x09| antwort antwortliste index random|\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.\x0a\x09random := Random new.\x0a\x09index := (random next * 3 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09^{\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: antwort}.",
-referencedClasses: ["Random", "Silk"],
+source: "antwortFuer: aString\x0a\x09| antwort antwortliste index blase random|\x0a\x09\x0a\x09blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.\x0a\x09random := Random new.\x0a\x09index := (random next * 3 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09^  {\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {'ID'->'answer'. antwort}. (blase)}.",
+referencedClasses: ["Silk", "Random"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["new", "rounded", "+", "*", "next", "at:", "DIV:"]
+messageSends: ["IMG:", "->", "new", "rounded", "+", "*", "next", "at:", "DIV:"]
 }, function ($methodClass){ return function (aString){
 var self=this,$self=this;
-var antwort,antwortliste,index,random;
+var antwort,antwortliste,index,blase,random;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
+blase=$recv($globals.Silk)._IMG_([["ID".__minus_gt("blase")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],["src".__minus_gt("https://www.freeiconspng.com/uploads/speech-bubble-png-22.png")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=2
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("Sprechblase")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=3
+//>>excludeEnd("ctx");
+][0]]);
 antwortliste=["Heute nicht...","Ja, Mann!","Auf keinen Fall.","Frag mich morgen nochmal."];
 random=$recv($globals.Random)._new();
 index=$recv($recv($recv($recv(random)._next()).__star((3))).__plus((1)))._rounded();
@@ -65,9 +78,9 @@ return [[$recv($globals.Silk)._DIV_(aString)
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["DIV:"]=1
 //>>excludeEnd("ctx");
-][0],$recv($globals.Silk)._DIV_(antwort)];
+][0],$recv($globals.Silk)._DIV_(["ID".__minus_gt("answer"),antwort]),blase];
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"antwortFuer:",{aString:aString,antwort:antwort,antwortliste:antwortliste,index:index,random:random})});
+}, function($ctx1) {$ctx1.fill(self,"antwortFuer:",{aString:aString,antwort:antwort,antwortliste:antwortliste,index:index,blase:blase,random:random})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -78,27 +91,39 @@ selector: "augmentPage",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "augmentPage\x0a\x09| intro button input image antwort |\x0a\x0a\x09image := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0a\x09intro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0a\x09input := intro INPUT: {'ID'->'Eingabe'}.\x0a\x09button := intro BUTTON: 'Klick'.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
+source: "augmentPage\x0a\x09| intro button input muschel antwort |\x0a\x09\x0a\x09muschel := Silk IMG: {'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0a\x09intro := Silk new DIV: {'ID'->'antworten'. Silk DIV: muschel. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0a\x09input := intro INPUT: {'ID'->'Eingabe'}.\x0a\x09button := intro BUTTON: 'Klick'.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
 messageSends: ["IMG:", "->", "DIV:", "new", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "eingabeLoeschen:ausgabeelement:"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
-var intro,button,input,image,antwort;
+var intro,button,input,muschel,antwort;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-image=$recv($globals.Silk)._IMG_([["src".__minus_gt("https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg")
+muschel=$recv($globals.Silk)._IMG_([["ID".__minus_gt("muschel")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=1
 //>>excludeEnd("ctx");
-][0],["alt".__minus_gt("Miesmuschel")
+][0],["src".__minus_gt("https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=2
 //>>excludeEnd("ctx");
+][0],["alt".__minus_gt("Miesmuschel")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=3
+//>>excludeEnd("ctx");
 ][0]]);
-intro=[$recv($recv($globals.Silk)._new())._DIV_([image,$recv($globals.Silk)._DIV_("Gib eine Ja/Nein-Frage ein:")])
+intro=[$recv($recv($globals.Silk)._new())._DIV_([["ID".__minus_gt("antworten")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=4
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._DIV_(muschel)
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["DIV:"]=2
+//>>excludeEnd("ctx");
+][0],$recv($globals.Silk)._DIV_("Gib eine Ja/Nein-Frage ein:")])
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["DIV:"]=1
 //>>excludeEnd("ctx");
@@ -136,7 +161,7 @@ return $self._eingabeLoeschen_ausgabeelement_(input,antwort);
 }));
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"augmentPage",{intro:intro,button:button,input:input,image:image,antwort:antwort})});
+}, function($ctx1) {$ctx1.fill(self,"augmentPage",{intro:intro,button:button,input:input,muschel:muschel,antwort:antwort})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -407,7 +432,7 @@ selector: "todo",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "todo\x0a^'Eingabefeld bei Klick löschen'\x0a",
+source: "todo\x0a^'Eingabefeld bei Klick löschen'",
 referencedClasses: [],
 //>>excludeEnd("ide");
 pragmas: [],
