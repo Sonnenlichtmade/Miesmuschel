@@ -33,6 +33,12 @@ doJQueryAppend
 
 doSilkTAG
 	'#output-list' asSilk LI: 'Silk TAG: added me!!'
+!
+
+eingabeLoeschen: anInput ausgabeelement: aDiv
+	aDiv resetContents.
+	aDiv << (self antwortFuer: anInput element value).
+	anInput element value: ''
 ! !
 
 !Miesmuschel methodsFor: 'backend'!
@@ -60,23 +66,18 @@ antwortFuer: aString
 !
 
 augmentPage
-| intro button input image antwort |
+	| intro button input image antwort |
 
-image := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.
-intro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
-input := intro INPUT: {'ID'->'Eingabe'}.
-button := intro BUTTON: 'Klick'.
-antwort := intro DIV.
-input on: #keydown bind: [:event | 
-	event keyCode = 13 ifTrue: [
-		antwort resetContents.
-		antwort << (self antwortFuer: input element value).
-		input element value: ''] ].
-		
-button on: #click bind: [
-	antwort resetContents.
-	antwort << (self antwortFuer: input element value).
-	input element value: '']
+	image := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.
+	intro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
+	input := intro INPUT: {'ID'->'Eingabe'}.
+	button := intro BUTTON: 'Klick'.
+	antwort := intro DIV.
+	input on: #keydown bind: [:event | 
+		event keyCode = 13 ifTrue: [
+			self eingabeLoeschen: input ausgabeelement: antwort]].		
+	button on: #click bind: [
+		self eingabeLoeschen: input ausgabeelement: antwort]
 ! !
 
 !Miesmuschel class methodsFor: 'starting'!

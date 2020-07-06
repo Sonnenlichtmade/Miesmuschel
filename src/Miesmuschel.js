@@ -78,11 +78,11 @@ selector: "augmentPage",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "augmentPage\x0a| intro button input image antwort |\x0a\x0aimage := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0aintro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0ainput := intro INPUT: {'ID'->'Eingabe'}.\x0abutton := intro BUTTON: 'Klick'.\x0aantwort := intro DIV.\x0ainput on: #keydown bind: [:event | \x0a\x09event keyCode = 13 ifTrue: [\x0a\x09\x09antwort resetContents.\x0a\x09\x09antwort << (self antwortFuer: input element value).\x0a\x09\x09input element value: ''] ].\x0a\x09\x09\x0abutton on: #click bind: [\x0a\x09antwort resetContents.\x0a\x09antwort << (self antwortFuer: input element value).\x0a\x09input element value: '']",
+source: "augmentPage\x0a\x09| intro button input image antwort |\x0a\x0a\x09image := Silk IMG: {'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0a\x09intro := Silk new DIV: {image. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0a\x09input := intro INPUT: {'ID'->'Eingabe'}.\x0a\x09button := intro BUTTON: 'Klick'.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["IMG:", "->", "DIV:", "new", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "resetContents", "<<", "antwortFuer:", "value", "element", "value:"]
+messageSends: ["IMG:", "->", "DIV:", "new", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "eingabeLoeschen:ausgabeelement:"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
 var intro,button,input,image,antwort;
@@ -111,35 +111,9 @@ antwort=$recv(intro)._DIV();
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
 if($core.assert($recv($recv(event)._keyCode()).__eq((13)))){
-[$recv(antwort)._resetContents()
+return [$self._eingabeLoeschen_ausgabeelement_(input,antwort)
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["resetContents"]=1
-//>>excludeEnd("ctx");
-][0];
-[$recv(antwort).__lt_lt([$self._antwortFuer_([$recv([$recv(input)._element()
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["element"]=1
-//>>excludeEnd("ctx");
-][0])._value()
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["value"]=1
-//>>excludeEnd("ctx");
-][0])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["antwortFuer:"]=1
-//>>excludeEnd("ctx");
-][0])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["<<"]=1
-//>>excludeEnd("ctx");
-][0];
-return [$recv([$recv(input)._element()
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["element"]=2
-//>>excludeEnd("ctx");
-][0])._value_("")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["value:"]=1
+,$ctx2.sendIdx["eingabeLoeschen:ausgabeelement:"]=1
 //>>excludeEnd("ctx");
 ][0];
 }
@@ -155,13 +129,7 @@ $recv(button)._on_bind_("click",(function(){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-$recv(antwort)._resetContents();
-$recv(antwort).__lt_lt($self._antwortFuer_($recv([$recv(input)._element()
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx["element"]=3
-//>>excludeEnd("ctx");
-][0])._value()));
-return $recv($recv(input)._element())._value_("");
+return $self._eingabeLoeschen_ausgabeelement_(input,antwort);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,3)});
 //>>excludeEnd("ctx");
@@ -328,6 +296,36 @@ $recv("#output-list"._asSilk())._LI_("Silk TAG: added me!");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"doSilkTAG",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "eingabeLoeschen:ausgabeelement:",
+protocol: "action",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["anInput", "aDiv"],
+source: "eingabeLoeschen: anInput ausgabeelement: aDiv\x0a\x09aDiv resetContents.\x0a\x09aDiv << (self antwortFuer: anInput element value).\x0a\x09anInput element value: ''",
+referencedClasses: [],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["resetContents", "<<", "antwortFuer:", "value", "element", "value:"]
+}, function ($methodClass){ return function (anInput,aDiv){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv(aDiv)._resetContents();
+$recv(aDiv).__lt_lt($self._antwortFuer_($recv([$recv(anInput)._element()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["element"]=1
+//>>excludeEnd("ctx");
+][0])._value()));
+$recv($recv(anInput)._element())._value_("");
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"eingabeLoeschen:ausgabeelement:",{anInput:anInput,aDiv:aDiv})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
