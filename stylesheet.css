@@ -8,13 +8,14 @@ body {
 	alignment-adjust: central, auto;
 }
 
-#blase {
+#blase {	
 	width: 25%;
 	height: 25%;
-	position: absolute;
-	z-index: 1;
-	left: 1100px;
-	top: 90px;
+	position: relative;
+	z-index: 2;
+	left: 2fr;
+	top: 0.1fr;
+	
 }
 
 #muschel {
@@ -27,10 +28,10 @@ body {
 }
 
 #answer {
-	position: absolute;
-	z-index: 2;
-	left: 1190px;
-	top: 125px;
+	position: relative;
+	z-index: 3;
+	left: 2fr;
+	top: 0.2fr;
 	color: #DB7093;
 }
 
