@@ -55,7 +55,7 @@ getApi: path
 !Miesmuschel methodsFor: 'starting'!
 
 antwortFuer: aString
-	| antwort antwortliste index blase random|
+	| antwort antwortliste blase index random|
 	
 	blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.
 	antwortliste := {'Heute nicht...'. 'Ja, Mann!!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.
@@ -64,15 +64,15 @@ antwortFuer: aString
 	antwort := antwortliste at: index.
 	^  {
 		Silk DIV: aString.
-		Silk DIV: {'ID'->'answer'. antwort}. (blase)}.
+		Silk DIV: {'class'->'answer'. 'ID'->'answer'. antwort}. (blase)}.
 !
 
 augmentPage
 	| intro button input muschel antwort |
 	
-	muschel := Silk IMG: {'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.
-	intro := Silk new DIV: {'ID'->'antworten'. Silk DIV: muschel. Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
-	input := intro INPUT: {'ID'->'Eingabe'}.
+	muschel := Silk IMG: {'class'->'muschel'. 'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.
+	intro := Silk new DIV: {'class'->'intro'. Silk DIV: muschel.  Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
+	input := intro INPUT: {'class'->'input'. 'ID'->'Eingabe'}.
 	button := intro BUTTON: 'Klick'.
 	antwort := intro DIV.
 	input on: #keydown bind: [:event | 
