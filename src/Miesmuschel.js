@@ -46,11 +46,11 @@ selector: "antwortFuer:",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "antwortFuer: aString\x0a\x09| antwort antwortliste blase index random|\x0a\x09\x0a\x09blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.\x0a\x09random := Random new.\x0a\x09index := (random next * 3 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09^  {\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {'class'->'answer'. 'ID'->'answer'. antwort}. (blase)}.",
+source: "antwortFuer: aString\x0a\x09| antwort antwortliste blase index random|\x0a\x09\x0a\x09blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.\x0a\x09random := Random new.\x0a\x09index := (random next * 3 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09^  {\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}",
 referencedClasses: ["Silk", "Random"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["IMG:", "->", "new", "rounded", "+", "*", "next", "at:", "DIV:"]
+messageSends: ["IMG:", "->", "new", "rounded", "+", "*", "next", "at:", "DIV:", "P:"]
 }, function ($methodClass){ return function (aString){
 var self=this,$self=this;
 var antwort,antwortliste,blase,index,random;
@@ -78,11 +78,19 @@ return [[$recv($globals.Silk)._DIV_(aString)
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["DIV:"]=1
 //>>excludeEnd("ctx");
-][0],$recv($globals.Silk)._DIV_([["class".__minus_gt("answer")
+][0],[$recv($globals.Silk)._DIV_([["class".__minus_gt("answer")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=4
 //>>excludeEnd("ctx");
-][0],"ID".__minus_gt("answer"),antwort]),blase];
+][0],["ID".__minus_gt("answer")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=5
+//>>excludeEnd("ctx");
+][0],blase,$recv($globals.Silk)._DIV_(["class".__minus_gt("text"),$recv($globals.Silk)._P_(antwort)])])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["DIV:"]=2
+//>>excludeEnd("ctx");
+][0]];
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"antwortFuer:",{aString:aString,antwort:antwort,antwortliste:antwortliste,blase:blase,index:index,random:random})});
 //>>excludeEnd("ctx");

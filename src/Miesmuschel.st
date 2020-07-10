@@ -64,7 +64,7 @@ antwortFuer: aString
 	antwort := antwortliste at: index.
 	^  {
 		Silk DIV: aString.
-		Silk DIV: {'class'->'answer'. 'ID'->'answer'. antwort}. (blase)}.
+		Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}
 !
 
 augmentPage

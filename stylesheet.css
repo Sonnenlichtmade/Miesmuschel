@@ -1,41 +1,119 @@
-/* Container holding the image and the text */
-.container{
-  position: relative;
-  text-align: center;
-  color: black;
+html {
+	background-image: url("https://i.pinimg.com/originals/ac/c8/78/acc8784dc68ed39439f15f257ba93691.jpg");
+	background-size: cover
+	background-repeat: no-repeat;
+	background-attachment: relative;
+	background-position: center;
 }
 
-/* Bottom left text */
+div {
+	font-family: Garamond, serif;
+	font-size: 105%;
+	column-gap: length;
+	text-align: center;
+	/*color: #000000; */
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+button {
+	box-shadow: 0px 1px 0px 0px #1c1b18;
+	background:linear-gradient(to bottom, #db7093 5%, #eb86a7 100%);
+	background-color:#db7093;
+	border-radius:15px;
+	border: 3px solid #DB7093;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: Garamond, serif;
+	font-size: 105%;
+	font-weight:bold;
+	padding:0.5em 2em;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #ffffff;
+	margin-left: 0.4em;
+}
+button:hover {
+	background:linear-gradient(to bottom, #eb86a7 5%, #db7093 100%);
+	background-color:#eb86a7;
+}
+button:active {
+	position:relative;
+	top:1px;
+}
+
+input {
+	border-radius:12px;
+	margin-top: 1%;
+	padding-top: 0.5em;
+	padding-right: 2em;
+	padding-bottom: 0.5em;
+	padding-left: 2em;
+	font-family: Garamond, serif;
+	font-size: 105%;
+	border: solid 3px #DB7093;
+	}
+	
+
+body {
+	position: relative;
+	width: 700px;
+	height: 700px;
+	max-height: 90%;
+	max-width: 90%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	
+}
+
+.muschel {
+	border: solid 3px #DB7093;
+	border-radius: 12px;
+	position: relative;
+	width: 700px;
+	height: 410px;
+	max-width: 90%;
+	max-height: 10%;
+}
+.intro {
+	color: aliceblue;
+	position: relative;
+	text-align: center;
+	margin-bottom: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*.intro {
+	right: -500px;
+	position: relative;
+	top: -450px;
+}
+*/
+
 .answer {
-  position: absolute;
-  bottom: 8px;
-  left: 16px;
+	position: relative;
+	width: 233;
+	height: 136;
+	max width: 90%;
+	max height: 10%;
+	z-index: 3;
+	right: -255px;
+	top: -630px;
+	padding: 10px 10px 10px 10px;
+	margin 10px 10px 10px 10px;
 }
 
-/* Top left text */
-.top-left {
-  position: absolute;
-  top: 8px;
-  left: 16px;
+.text {
+	color: black;
+	position: relative;
+	z-index: 4;
+	right: -3px;
+	top: -176px;
+	display: block;
+	padding: 10px 10px 10px 10 px;
 }
-
-/* Top right text */
-.top-right {
-  position: absolute;
-  top: 8px;
-  right: 16px;
-}
-
-/* Bottom right text */
-.bottom-right {
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-}
-
-/* Centered text */
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
