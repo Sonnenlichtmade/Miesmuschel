@@ -58,11 +58,17 @@ antwortFuer: aString
 	| antwort antwortliste blase index random|
 	
 	blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.
-	antwortliste := {'Heute nicht...'. 'Ja, Mann!!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.
+	antwortliste := {'Heute nicht...'. 'Ja, Mann!!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'. Silk IMG: {'src'->'https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif'. 'alt'->'kindly nodding'}. Silk IMG: {'src'->'https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif'. 'alt'->'hell no!!'}. Silk IMG: {'src'->'https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif'. 'alt'->'well well'}. Silk IMG: {'src'->'https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif'. 'alt'->'oh yeah...'}. Silk IMG: {'src'->'https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif'. 'alt'->'frustrated Kermit'}. Silk IMG: {'src'->'https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif'. 'alt'->'crazy yeah'}. Silk IMG: {'src'->'https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif'. 'alt'->'shrek n donkey'}. Silk IMG: {'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. 'alt'->'donkey shaking head'}.}.  
 	random := Random new.
-	index := (random next * 3 + 1) rounded.
+	index := (random next * 11 + 1) rounded.
 	antwort := antwortliste at: index.
-	^  {
+	
+	"(index > 4)
+		ifTrue:
+			[antwort := muschel resetContents. blase resetContents. antwortliste at: index]
+		ifFalse: 
+			[antwort:= antwortliste at: index]."
+	^{
 		Silk DIV: aString.
 		Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}
 !
@@ -70,7 +76,7 @@ antwortFuer: aString
 augmentPage
 	| intro button input muschel antwort |
 	
-	muschel := Silk IMG: {'class'->'muschel'. 'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.
+	muschel :=  Silk DIV: {'class'->'muschel'. 'ID'->'muschel'. Silk IMG: { 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.}.
 	intro := Silk new DIV: {'class'->'intro'. Silk DIV: muschel.  Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
 	input := intro INPUT: {'class'->'input'. 'ID'->'Eingabe'}.
 	button := intro BUTTON: 'Klick'.

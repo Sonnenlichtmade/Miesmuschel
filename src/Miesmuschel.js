@@ -46,7 +46,7 @@ selector: "antwortFuer:",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "antwortFuer: aString\x0a\x09| antwort antwortliste blase index random|\x0a\x09\x0a\x09blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'}.\x0a\x09random := Random new.\x0a\x09index := (random next * 3 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09^  {\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}",
+source: "antwortFuer: aString\x0a\x09| antwort antwortliste blase index random|\x0a\x09\x0a\x09blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'. Silk IMG: {'src'->'https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif'. 'alt'->'kindly nodding'}. Silk IMG: {'src'->'https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif'. 'alt'->'hell no!'}. Silk IMG: {'src'->'https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif'. 'alt'->'well well'}. Silk IMG: {'src'->'https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif'. 'alt'->'oh yeah...'}. Silk IMG: {'src'->'https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif'. 'alt'->'frustrated Kermit'}. Silk IMG: {'src'->'https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif'. 'alt'->'crazy yeah'}. Silk IMG: {'src'->'https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif'. 'alt'->'shrek n donkey'}. Silk IMG: {'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. 'alt'->'donkey shaking head'}.}.  \x0a\x09random := Random new.\x0a\x09index := (random next * 11 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09\x0a\x09\x22(index > 4)\x0a\x09\x09ifTrue:\x0a\x09\x09\x09[antwort := muschel resetContents. blase resetContents. antwortliste at: index]\x0a\x09\x09ifFalse: \x0a\x09\x09\x09[antwort:= antwortliste at: index].\x22\x0a\x09^{\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}",
 referencedClasses: ["Silk", "Random"],
 //>>excludeEnd("ide");
 pragmas: [],
@@ -57,7 +57,7 @@ var antwort,antwortliste,blase,index,random;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-blase=$recv($globals.Silk)._IMG_([["ID".__minus_gt("blase")
+blase=[$recv($globals.Silk)._IMG_([["ID".__minus_gt("blase")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=1
 //>>excludeEnd("ctx");
@@ -69,10 +69,106 @@ blase=$recv($globals.Silk)._IMG_([["ID".__minus_gt("blase")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=3
 //>>excludeEnd("ctx");
-][0]]);
-antwortliste=["Heute nicht...","Ja, Mann!","Auf keinen Fall.","Frag mich morgen nochmal."];
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=1
+//>>excludeEnd("ctx");
+][0];
+antwortliste=["Heute nicht...","Ja, Mann!","Auf keinen Fall.","Frag mich morgen nochmal.",[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=4
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("kindly nodding")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=5
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=2
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=6
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("hell no!")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=7
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=3
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=8
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("well well")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=9
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=4
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=10
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("oh yeah...")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=11
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=5
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=12
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("frustrated Kermit")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=13
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=6
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=14
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("crazy yeah")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=15
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=7
+//>>excludeEnd("ctx");
+][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=16
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("shrek n donkey")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=17
+//>>excludeEnd("ctx");
+][0]])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["IMG:"]=8
+//>>excludeEnd("ctx");
+][0],$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=18
+//>>excludeEnd("ctx");
+][0],["alt".__minus_gt("donkey shaking head")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=19
+//>>excludeEnd("ctx");
+][0]])];
 random=$recv($globals.Random)._new();
-index=$recv($recv($recv($recv(random)._next()).__star((3))).__plus((1)))._rounded();
+index=$recv($recv($recv($recv(random)._next()).__star((11))).__plus((1)))._rounded();
 antwort=$recv(antwortliste)._at_(index);
 return [[$recv($globals.Silk)._DIV_(aString)
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -80,11 +176,11 @@ return [[$recv($globals.Silk)._DIV_(aString)
 //>>excludeEnd("ctx");
 ][0],[$recv($globals.Silk)._DIV_([["class".__minus_gt("answer")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=4
+,$ctx1.sendIdx["->"]=20
 //>>excludeEnd("ctx");
 ][0],["ID".__minus_gt("answer")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=5
+,$ctx1.sendIdx["->"]=21
 //>>excludeEnd("ctx");
 ][0],blase,$recv($globals.Silk)._DIV_(["class".__minus_gt("text"),$recv($globals.Silk)._P_(antwort)])])
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -103,18 +199,18 @@ selector: "augmentPage",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "augmentPage\x0a\x09| intro button input muschel antwort |\x0a\x09\x0a\x09muschel := Silk IMG: {'class'->'muschel'. 'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.\x0a\x09intro := Silk new DIV: {'class'->'intro'. Silk DIV: muschel.  Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0a\x09input := intro INPUT: {'class'->'input'. 'ID'->'Eingabe'}.\x0a\x09button := intro BUTTON: 'Klick'.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
+source: "augmentPage\x0a\x09| intro button input muschel antwort |\x0a\x09\x0a\x09muschel :=  Silk DIV: {'class'->'muschel'. 'ID'->'muschel'. Silk IMG: { 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.}.\x0a\x09intro := Silk new DIV: {'class'->'intro'. Silk DIV: muschel.  Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.\x0a\x09input := intro INPUT: {'class'->'input'. 'ID'->'Eingabe'}.\x0a\x09button := intro BUTTON: 'Klick'.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["IMG:", "->", "DIV:", "new", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "eingabeLoeschen:ausgabeelement:"]
+messageSends: ["DIV:", "->", "IMG:", "new", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "eingabeLoeschen:ausgabeelement:"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
 var intro,button,input,muschel,antwort;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-muschel=$recv($globals.Silk)._IMG_([["class".__minus_gt("muschel")
+muschel=[$recv($globals.Silk)._DIV_([["class".__minus_gt("muschel")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=1
 //>>excludeEnd("ctx");
@@ -122,7 +218,7 @@ muschel=$recv($globals.Silk)._IMG_([["class".__minus_gt("muschel")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=2
 //>>excludeEnd("ctx");
-][0],["src".__minus_gt("https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg")
+][0],$recv($globals.Silk)._IMG_([["src".__minus_gt("https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=3
 //>>excludeEnd("ctx");
@@ -130,18 +226,22 @@ muschel=$recv($globals.Silk)._IMG_([["class".__minus_gt("muschel")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=4
 //>>excludeEnd("ctx");
-][0]]);
+][0]])])
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["DIV:"]=1
+//>>excludeEnd("ctx");
+][0];
 intro=[$recv($recv($globals.Silk)._new())._DIV_([["class".__minus_gt("intro")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 ,$ctx1.sendIdx["->"]=5
 //>>excludeEnd("ctx");
 ][0],[$recv($globals.Silk)._DIV_(muschel)
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["DIV:"]=2
+,$ctx1.sendIdx["DIV:"]=3
 //>>excludeEnd("ctx");
 ][0],$recv($globals.Silk)._DIV_("Gib eine Ja/Nein-Frage ein:")])
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["DIV:"]=1
+,$ctx1.sendIdx["DIV:"]=2
 //>>excludeEnd("ctx");
 ][0];
 input=$recv(intro)._INPUT_([["class".__minus_gt("input")
