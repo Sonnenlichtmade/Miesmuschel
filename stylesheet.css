@@ -11,7 +11,6 @@ div {
 	font-size: 105%;
 	column-gap: length;
 	text-align: center;
-	/*color: #000000; */
 	margin-top: 1em;
 	margin-bottom: 1em;
 }
@@ -43,7 +42,7 @@ button:active {
 }
 
 input {
-	border-radius:12px;
+	border-radius: 12px;
 	margin-top: 1%;
 	padding-top: 0.5em;
 	padding-right: 2em;
@@ -70,7 +69,8 @@ body {
 	
 }
 
-#muschel {
+
+#muschel img {
 	border: solid 3px #DB7093;
 	border-radius: 12px;
 	position: relative;
@@ -79,6 +79,7 @@ body {
 	max-width: 90%;
 	max-height: 10%;
 }
+
 .intro {
 	color: aliceblue;
 	position: relative;
@@ -88,24 +89,15 @@ body {
 	margin-right: auto;
 }
 
-/*.intro {
-	right: -500px;
-	position: relative;
-	top: -450px;
-}
-*/
 
 .answer {
 	position: relative;
 	width: 233;
 	height: 136;
-	max width: 90%;
-	max height: 10%;
 	z-index: 3;
 	right: -255px;
 	top: -630px;
 	padding: 10px 10px 10px 10px;
-	margin 10px 10px 10px 10px;
 }
 
 .text {
@@ -113,7 +105,7 @@ body {
 	position: relative;
 	z-index: 4;
 	right: -3px;
-	top: -176px;
+	top: -196px;
 	display: block;
-	padding: 10px 10px 10px 10 px;
+	padding: 10px 10px 10px 10px;
 }

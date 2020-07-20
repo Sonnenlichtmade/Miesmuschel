@@ -65,7 +65,7 @@ antwortFuer: aString
 	
 	"(index > 4)
 		ifTrue:
-			[antwort := '#muschel' asSilk. blase resetContents. antwortliste at: index]
+			[antwort := '#muschel' asSilk. blase. antwortliste at: index]
 		ifFalse: 
 			[antwort:= antwortliste at: index]."
 	^{
@@ -74,11 +74,10 @@ antwortFuer: aString
 !
 
 augmentPage
-	| intro button input muschel antwort |
+	| intro input button antwort |
 	
-	muschel :=  Silk DIV: {'class'->'muschel'.  Silk IMG: {'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.}.
-	intro := Silk new DIV: {'class'->'intro'. Silk DIV: muschel.  Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
-	input := intro INPUT: {'class'->'input'. 'ID'->'Eingabe'}.
+	intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung}.
+	input := intro INPUT: {'class'->'input'}.
 	button := intro BUTTON: 'Klick'.
 	antwort := intro DIV.
 	input on: #keydown bind: [:event | 
@@ -86,6 +85,20 @@ augmentPage
 			self eingabeLoeschen: input ausgabeelement: antwort]].		
 	button on: #click bind: [
 		self eingabeLoeschen: input ausgabeelement: antwort]
+!
+
+frageAufforderung
+	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
+!
+
+muschelBild
+	^ Silk IMG: { 
+		'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 
+		'alt'->'Miesmuschel'}
+!
+
+muschelDiv
+	^ Silk DIV: {'ID'->'muschel'. self muschelBild}
 ! !
 
 !Miesmuschel class methodsFor: 'starting'!
