@@ -65,7 +65,7 @@ antwortFuer: aString
 	
 	"(index > 4)
 		ifTrue:
-			[antwort := muschel resetContents. blase resetContents. antwortliste at: index]
+			[antwort := '#muschel' asSilk. blase resetContents. antwortliste at: index]
 		ifFalse: 
 			[antwort:= antwortliste at: index]."
 	^{
@@ -76,7 +76,7 @@ antwortFuer: aString
 augmentPage
 	| intro button input muschel antwort |
 	
-	muschel :=  Silk DIV: {'class'->'muschel'. 'ID'->'muschel'. Silk IMG: { 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.}.
+	muschel :=  Silk DIV: {'class'->'muschel'.  Silk IMG: {'ID'->'muschel'. 'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 'alt'->'Miesmuschel'}.}.
 	intro := Silk new DIV: {'class'->'intro'. Silk DIV: muschel.  Silk DIV: 'Gib eine Ja/Nein-Frage ein:'}.
 	input := intro INPUT: {'class'->'input'. 'ID'->'Eingabe'}.
 	button := intro BUTTON: 'Klick'.
