@@ -4,6 +4,103 @@ Object subclass: #Miesmuschel
 	slots: {}
 	package: 'Miesmuschel'!
 
+!Miesmuschel methodsFor: 'accessing'!
+
+antwortliste
+	^ {
+		'Heute nicht...'. 
+		'Ja, Mann!!'. 
+		'Auf keinen Fall.'. 
+		'Frag mich morgen nochmal.'. 
+		self kindlyNodding.
+		self hellNo. 
+		self wellWell. 
+		self ohYeah. 
+		self frustratedKermit. 
+		self crazyYeah. 
+		self shrekAndDonkey. 
+		self donkeyShakingHead}
+!
+
+button
+	^ Silk BUTTON: '♥'.
+!
+
+frageAufforderung
+	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
+!
+
+input
+	^ Silk INPUT: {'class'->'input'}
+!
+
+muschelDiv
+	^ Silk DIV: {'ID'->'muschel'. self muschelBild}
+! !
+
+!Miesmuschel methodsFor: 'accessing images'!
+
+crazyYeah 
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif'. 
+		'alt'->'crazy yeah'}
+!
+
+donkeyShakingHead
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. 
+		'alt'->'donkey shaking head'}
+!
+
+frustratedKermit 
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif'. 
+		'alt'->'frustrated Kermit'}
+!
+
+hellNo
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif'. 
+		'alt'->'hell no!!'}
+!
+
+kindlyNodding
+		^ Silk IMG: {
+			'src'->'https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif'. 
+			'alt'->'kindly nodding'}.
+!
+
+muschelBild
+	^ Silk IMG: { 
+		'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 
+		'alt'->'Miesmuschel'}
+!
+
+ohYeah 
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif'. 
+		'alt'->'oh yeah...'}
+!
+
+shrekAndDonkey
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif'. 
+		'alt'->'shrek n donkey'}
+!
+
+sprechblase
+	^ Silk IMG: {
+		'ID'->'blase'. 
+		'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 
+		'alt'->'Sprechblase'}
+!
+
+wellWell
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif'. 
+		'alt'->'well well'}
+! !
+
 !Miesmuschel methodsFor: 'action'!
 
 alert: aString after: aNumberOfMilliseconds
@@ -57,48 +154,35 @@ getApi: path
 antwortFuer: aString
 	| antwort antwortliste blase index random|
 	
-	blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.
-	antwortliste := {'Heute nicht...'. 'Ja, Mann!!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'. Silk IMG: {'src'->'https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif'. 'alt'->'kindly nodding'}. Silk IMG: {'src'->'https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif'. 'alt'->'hell no!!'}. Silk IMG: {'src'->'https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif'. 'alt'->'well well'}. Silk IMG: {'src'->'https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif'. 'alt'->'oh yeah...'}. Silk IMG: {'src'->'https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif'. 'alt'->'frustrated Kermit'}. Silk IMG: {'src'->'https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif'. 'alt'->'crazy yeah'}. Silk IMG: {'src'->'https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif'. 'alt'->'shrek n donkey'}. Silk IMG: {'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. 'alt'->'donkey shaking head'}.}.  
+	blase := self sprechblase.
+	antwortliste := self antwortliste.
 	random := Random new.
 	index := (random next * 11 + 1) rounded.
 	antwort := antwortliste at: index.
 	
-	"(index > 4)
-		ifTrue:
-			[antwort := '#muschel' asSilk. blase. antwortliste at: index]
-		ifFalse: 
-			[antwort:= antwortliste at: index]."
 	^{
 		Silk DIV: aString.
-		Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}
+		Silk DIV: {
+			'class'->'answer'. 
+			'ID'->'answer'. 
+			blase. 
+			Silk DIV: {
+				'class'->'text'. 
+				(Silk P: antwort)}}}
 !
 
 augmentPage
 	| intro input button antwort |
 	
-	intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung}.
-	input := intro INPUT: {'class'->'input'}.
-	button := intro BUTTON: 'Klick'.
+	button := self button.
+	input := self input.
+	intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung. input. button}.
 	antwort := intro DIV.
 	input on: #keydown bind: [:event | 
 		event keyCode = 13 ifTrue: [
 			self eingabeLoeschen: input ausgabeelement: antwort]].		
 	button on: #click bind: [
 		self eingabeLoeschen: input ausgabeelement: antwort]
-!
-
-frageAufforderung
-	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
-!
-
-muschelBild
-	^ Silk IMG: { 
-		'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. 
-		'alt'->'Miesmuschel'}
-!
-
-muschelDiv
-	^ Silk DIV: {'ID'->'muschel'. self muschelBild}
 ! !
 
 !Miesmuschel class methodsFor: 'starting'!

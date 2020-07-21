@@ -46,127 +46,19 @@ selector: "antwortFuer:",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["aString"],
-source: "antwortFuer: aString\x0a\x09| antwort antwortliste blase index random|\x0a\x09\x0a\x09blase := Silk IMG: {'ID'->'blase'. 'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 'alt'->'Sprechblase'}.\x0a\x09antwortliste := {'Heute nicht...'. 'Ja, Mann!'. 'Auf keinen Fall.'. 'Frag mich morgen nochmal.'. Silk IMG: {'src'->'https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif'. 'alt'->'kindly nodding'}. Silk IMG: {'src'->'https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif'. 'alt'->'hell no!'}. Silk IMG: {'src'->'https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif'. 'alt'->'well well'}. Silk IMG: {'src'->'https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif'. 'alt'->'oh yeah...'}. Silk IMG: {'src'->'https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif'. 'alt'->'frustrated Kermit'}. Silk IMG: {'src'->'https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif'. 'alt'->'crazy yeah'}. Silk IMG: {'src'->'https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif'. 'alt'->'shrek n donkey'}. Silk IMG: {'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. 'alt'->'donkey shaking head'}.}.  \x0a\x09random := Random new.\x0a\x09index := (random next * 11 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09\x0a\x09\x22(index > 4)\x0a\x09\x09ifTrue:\x0a\x09\x09\x09[antwort := '#muschel' asSilk. blase. antwortliste at: index]\x0a\x09\x09ifFalse: \x0a\x09\x09\x09[antwort:= antwortliste at: index].\x22\x0a\x09^{\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {'class'->'answer'. 'ID'->'answer'. blase. Silk DIV: {'class'->'text'. (Silk P: antwort)}}}",
-referencedClasses: ["Silk", "Random"],
+source: "antwortFuer: aString\x0a\x09| antwort antwortliste blase index random|\x0a\x09\x0a\x09blase := self sprechblase.\x0a\x09antwortliste := self antwortliste.\x0a\x09random := Random new.\x0a\x09index := (random next * 11 + 1) rounded.\x0a\x09antwort := antwortliste at: index.\x0a\x09\x0a\x09^{\x0a\x09\x09Silk DIV: aString.\x0a\x09\x09Silk DIV: {\x0a\x09\x09\x09'class'->'answer'. \x0a\x09\x09\x09'ID'->'answer'. \x0a\x09\x09\x09blase. \x0a\x09\x09\x09Silk DIV: {\x0a\x09\x09\x09\x09'class'->'text'. \x0a\x09\x09\x09\x09(Silk P: antwort)}}}",
+referencedClasses: ["Random", "Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["IMG:", "->", "new", "rounded", "+", "*", "next", "at:", "DIV:", "P:"]
+messageSends: ["sprechblase", "antwortliste", "new", "rounded", "+", "*", "next", "at:", "DIV:", "->", "P:"]
 }, function ($methodClass){ return function (aString){
 var self=this,$self=this;
 var antwort,antwortliste,blase,index,random;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-blase=[$recv($globals.Silk)._IMG_([["ID".__minus_gt("blase")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=1
-//>>excludeEnd("ctx");
-][0],["src".__minus_gt("https://www.freeiconspng.com/uploads/speech-bubble-png-22.png")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=2
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("Sprechblase")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=3
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=1
-//>>excludeEnd("ctx");
-][0];
-antwortliste=["Heute nicht...","Ja, Mann!","Auf keinen Fall.","Frag mich morgen nochmal.",[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=4
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("kindly nodding")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=5
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=2
-//>>excludeEnd("ctx");
-][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=6
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("hell no!")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=7
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=3
-//>>excludeEnd("ctx");
-][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=8
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("well well")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=9
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=4
-//>>excludeEnd("ctx");
-][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=10
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("oh yeah...")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=11
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=5
-//>>excludeEnd("ctx");
-][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=12
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("frustrated Kermit")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=13
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=6
-//>>excludeEnd("ctx");
-][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=14
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("crazy yeah")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=15
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=7
-//>>excludeEnd("ctx");
-][0],[$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=16
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("shrek n donkey")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=17
-//>>excludeEnd("ctx");
-][0]])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["IMG:"]=8
-//>>excludeEnd("ctx");
-][0],$recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=18
-//>>excludeEnd("ctx");
-][0],["alt".__minus_gt("donkey shaking head")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=19
-//>>excludeEnd("ctx");
-][0]])];
+blase=$self._sprechblase();
+antwortliste=$self._antwortliste();
 random=$recv($globals.Random)._new();
 index=$recv($recv($recv($recv(random)._next()).__star((11))).__plus((1)))._rounded();
 antwort=$recv(antwortliste)._at_(index);
@@ -176,11 +68,11 @@ return [[$recv($globals.Silk)._DIV_(aString)
 //>>excludeEnd("ctx");
 ][0],[$recv($globals.Silk)._DIV_([["class".__minus_gt("answer")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=20
+,$ctx1.sendIdx["->"]=1
 //>>excludeEnd("ctx");
 ][0],["ID".__minus_gt("answer")
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=21
+,$ctx1.sendIdx["->"]=2
 //>>excludeEnd("ctx");
 ][0],blase,$recv($globals.Silk)._DIV_(["class".__minus_gt("text"),$recv($globals.Silk)._P_(antwort)])])
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -195,28 +87,47 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
+selector: "antwortliste",
+protocol: "accessing",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "antwortliste\x0a\x09^ {\x0a\x09\x09'Heute nicht...'. \x0a\x09\x09'Ja, Mann!'. \x0a\x09\x09'Auf keinen Fall.'. \x0a\x09\x09'Frag mich morgen nochmal.'. \x0a\x09\x09self kindlyNodding.\x0a\x09\x09self hellNo. \x0a\x09\x09self wellWell. \x0a\x09\x09self ohYeah. \x0a\x09\x09self frustratedKermit. \x0a\x09\x09self crazyYeah. \x0a\x09\x09self shrekAndDonkey. \x0a\x09\x09self donkeyShakingHead}  ",
+referencedClasses: [],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["kindlyNodding", "hellNo", "wellWell", "ohYeah", "frustratedKermit", "crazyYeah", "shrekAndDonkey", "donkeyShakingHead"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return ["Heute nicht...","Ja, Mann!","Auf keinen Fall.","Frag mich morgen nochmal.",$self._kindlyNodding(),$self._hellNo(),$self._wellWell(),$self._ohYeah(),$self._frustratedKermit(),$self._crazyYeah(),$self._shrekAndDonkey(),$self._donkeyShakingHead()];
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"antwortliste",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
 selector: "augmentPage",
 protocol: "starting",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "augmentPage\x0a\x09| intro input button antwort |\x0a\x09\x0a\x09intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung}.\x0a\x09input := intro INPUT: {'class'->'input'}.\x0a\x09button := intro BUTTON: 'Klick'.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
+source: "augmentPage\x0a\x09| intro input button antwort |\x0a\x09\x0a\x09button := self button.\x0a\x09input := self input.\x0a\x09intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung. input. button}.\x0a\x09antwort := intro DIV.\x0a\x09input on: #keydown bind: [:event | \x0a\x09\x09event keyCode = 13 ifTrue: [\x0a\x09\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]].\x09\x09\x0a\x09button on: #click bind: [\x0a\x09\x09self eingabeLoeschen: input ausgabeelement: antwort]",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["DIV:", "new", "->", "muschelDiv", "frageAufforderung", "INPUT:", "BUTTON:", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "eingabeLoeschen:ausgabeelement:"]
+messageSends: ["button", "input", "DIV:", "new", "->", "muschelDiv", "frageAufforderung", "DIV", "on:bind:", "ifTrue:", "=", "keyCode", "eingabeLoeschen:ausgabeelement:"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
 var intro,input,button,antwort;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-intro=$recv($recv($globals.Silk)._new())._DIV_([["class".__minus_gt("intro")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=1
-//>>excludeEnd("ctx");
-][0],$self._muschelDiv(),$self._frageAufforderung()]);
-input=$recv(intro)._INPUT_(["class".__minus_gt("input")]);
-button=$recv(intro)._BUTTON_("Klick");
+button=$self._button();
+input=$self._input();
+intro=$recv($recv($globals.Silk)._new())._DIV_(["class".__minus_gt("intro"),$self._muschelDiv(),$self._frageAufforderung(),input,button]);
 antwort=$recv(intro)._DIV();
 [$recv(input)._on_bind_("keydown",(function(event){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -249,6 +160,56 @@ return $self._eingabeLoeschen_ausgabeelement_(input,antwort);
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"augmentPage",{intro:intro,input:input,button:button,antwort:antwort})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "button",
+protocol: "accessing",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "button\x0a\x09^ Silk BUTTON: '♥'.\x0a\x09",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["BUTTON:"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._BUTTON_("♥");
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"button",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "crazyYeah",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "crazyYeah \x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif'. \x0a\x09\x09'alt'->'crazy yeah'}",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/10Jpr9KSaXLchW/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("crazy yeah")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"crazyYeah",{})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -414,6 +375,33 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
+selector: "donkeyShakingHead",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "donkeyShakingHead\x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. \x0a\x09\x09'alt'->'donkey shaking head'}  ",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("donkey shaking head")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"donkeyShakingHead",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
 selector: "eingabeLoeschen:ausgabeelement:",
 protocol: "action",
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -468,7 +456,7 @@ $globals.Miesmuschel);
 $core.addMethod(
 $core.method({
 selector: "frageAufforderung",
-protocol: "starting",
+protocol: "accessing",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "frageAufforderung\x0a\x09^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'\x0a\x09",
@@ -484,6 +472,33 @@ return $core.withContext(function($ctx1) {
 return $recv($globals.Silk)._DIV_("Gib eine Ja/Nein-Frage ein:");
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"frageAufforderung",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "frustratedKermit",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "frustratedKermit \x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif'. \x0a\x09\x09'alt'->'frustrated Kermit'}",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/oyFyFiXz0hrnG/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("frustrated Kermit")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"frustratedKermit",{})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -513,8 +528,85 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
+selector: "hellNo",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "hellNo\x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif'. \x0a\x09\x09'alt'->'hell no!'}",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("hell no!")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"hellNo",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "input",
+protocol: "accessing",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "input\x0a\x09^ Silk INPUT: {'class'->'input'}",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["INPUT:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._INPUT_(["class".__minus_gt("input")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"input",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "kindlyNodding",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "kindlyNodding\x0a\x09\x09^ Silk IMG: {\x0a\x09\x09\x09'src'->'https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif'. \x0a\x09\x09\x09'alt'->'kindly nodding'}. \x0a\x09\x09",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/NEvPzZ8bd1V4Y/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("kindly nodding")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"kindlyNodding",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
 selector: "muschelBild",
-protocol: "starting",
+protocol: "accessing images",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "muschelBild\x0a\x09^ Silk IMG: { \x0a\x09\x09'src'->'https://static.giga.de/wp-content/uploads/2013/07/magische-miesmuschel-rcm625x0u.jpg'. \x0a\x09\x09'alt'->'Miesmuschel'}\x0a\x09",
@@ -541,7 +633,7 @@ $globals.Miesmuschel);
 $core.addMethod(
 $core.method({
 selector: "muschelDiv",
-protocol: "starting",
+protocol: "accessing",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
 source: "muschelDiv\x0a\x09^ Silk DIV: {'ID'->'muschel'. self muschelBild}",
@@ -557,6 +649,118 @@ return $core.withContext(function($ctx1) {
 return $recv($globals.Silk)._DIV_(["ID".__minus_gt("muschel"),$self._muschelBild()]);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"muschelDiv",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "ohYeah",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "ohYeah \x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif'. \x0a\x09\x09'alt'->'oh yeah...'}",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/bzE1WAm8BifiE/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("oh yeah...")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"ohYeah",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "shrekAndDonkey",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "shrekAndDonkey\x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif'. \x0a\x09\x09'alt'->'shrek n donkey'}",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/pKBZfGcYcgzrG/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("shrek n donkey")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"shrekAndDonkey",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "sprechblase",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "sprechblase\x0a\x09^ Silk IMG: {\x0a\x09\x09'ID'->'blase'. \x0a\x09\x09'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. \x0a\x09\x09'alt'->'Sprechblase'}\x0a\x09",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["ID".__minus_gt("blase")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],["src".__minus_gt("https://www.freeiconspng.com/uploads/speech-bubble-png-22.png")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=2
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("Sprechblase")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"sprechblase",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "wellWell",
+protocol: "accessing images",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: " wellWell\x0a\x09^ Silk IMG: {\x0a\x09\x09'src'->'https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif'. \x0a\x09\x09'alt'->'well well'}\x0a\x09\x09",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["IMG:", "->"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/media/3o7aDbJJV5n7Y6KgkU/giphy.gif")
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["->"]=1
+//>>excludeEnd("ctx");
+][0],"alt".__minus_gt("well well")]);
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"wellWell",{})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
