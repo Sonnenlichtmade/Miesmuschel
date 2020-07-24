@@ -504,6 +504,7 @@ $globals.Miesmuschel);
 $core.addMethod(
 $core.method({
 selector: "eingabeLoeschen:ausgabeelement:",
+protocol: "accessing",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["einSilkInput", "einAntwortDiv"],
 source: "eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv\x0a\x09| frage antwort |\x0a\x09\x0a\x09antwort := self zufaelligeAntwort.\x0a\x09frage := einSilkInput element value.\x0a\x09einAntwortDiv resetContents.\x0a\x09einAntwortDiv << (Silk DIV: frage).\x0a\x09(antwort isKindOf: Silk)\x0a\x09\x09ifTrue: [self antwortBild: antwort] \x0a\x09\x09ifFalse: [einAntwortDiv << (self antwortText: antwort)].\x0a\x09einSilkInput element value: ''",
