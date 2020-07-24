@@ -1,10 +1,52 @@
 Smalltalk createPackage: 'Miesmuschel'!
 (Smalltalk packageAt: 'Miesmuschel' ifAbsent: [ self error: 'Package not created: Miesmuschel' ]) imports: {'amber/web/Web'. 'amber/web/Web-JQuery'. 'silk/Silk'}!
 Object subclass: #Miesmuschel
-	slots: {}
+	slots: {#muschelDiv}
 	package: 'Miesmuschel'!
 
 !Miesmuschel methodsFor: 'accessing'!
+
+antwortBild
+
+	^ Silk DIV: {
+		'class'->'antwortbild'. 
+		self zufaelligeAntwort. self muschelDiv resetContents}
+!
+
+antwortBild: einBild
+	
+	self muschelDiv resetContents.
+	self muschelDiv << (Silk DIV: {
+		'class'->'antwortbild'. 
+		einBild})
+!
+
+antwortDiv
+
+	^ Silk DIV.
+!
+
+antwortText
+
+	^ Silk DIV: {
+			'class'->'answer'. 
+			'ID'->'answer'. 
+			self sprechblase.
+			Silk DIV: {
+				'class'->'text'. 
+				(Silk P: self zufaelligeAntwort)}}
+!
+
+antwortText: einText
+
+	^ Silk DIV: {
+			'class'->'answer'. 
+			'ID'->'answer'. 
+			self sprechblase.
+			Silk DIV: {
+				'class'->'text'. 
+				(Silk P: einText)}}
+!
 
 antwortliste
 	^ {
@@ -26,6 +68,19 @@ button
 	^ Silk BUTTON: '♥'.
 !
 
+eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv
+	| frage antwort |
+	
+	antwort := self zufaelligeAntwort.
+	frage := einSilkInput element value.
+	einAntwortDiv resetContents.
+	einAntwortDiv << (Silk DIV: frage).
+	(antwort isKindOf: Silk)
+		ifTrue: [self antwortBild: antwort] 
+		ifFalse: [einAntwortDiv << (self antwortText: antwort)].
+	einSilkInput element value: ''
+!
+
 frageAufforderung
 	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
 !
@@ -35,7 +90,19 @@ input
 !
 
 muschelDiv
-	^ Silk DIV: {'ID'->'muschel'. self muschelBild}
+	^muschelDiv ifNil: [
+		muschelDiv := Silk DIV: {'ID'->'muschel'. self muschelBild}]
+!
+
+zufaelligeAntwort
+	"liefert einen zufaelligen String oder zufaelliges Image"
+	
+	| antwortliste index random|
+
+	antwortliste := self antwortliste.
+	random := Random new.
+	index := (random next * (antwortliste size - 1)) rounded.
+	^ antwortliste at: index + 1
 ! !
 
 !Miesmuschel methodsFor: 'accessing images'!
@@ -130,12 +197,6 @@ doJQueryAppend
 
 doSilkTAG
 	'#output-list' asSilk LI: 'Silk TAG: added me!!'
-!
-
-eingabeLoeschen: anInput ausgabeelement: aDiv
-	aDiv resetContents.
-	aDiv << (self antwortFuer: anInput element value).
-	anInput element value: ''
 ! !
 
 !Miesmuschel methodsFor: 'backend'!
@@ -151,33 +212,13 @@ getApi: path
 
 !Miesmuschel methodsFor: 'starting'!
 
-antwortFuer: aString
-	| antwort antwortliste blase index random|
-	
-	blase := self sprechblase.
-	antwortliste := self antwortliste.
-	random := Random new.
-	index := (random next * 11 + 1) rounded.
-	antwort := antwortliste at: index.
-	
-	^{
-		Silk DIV: aString.
-		Silk DIV: {
-			'class'->'answer'. 
-			'ID'->'answer'. 
-			blase. 
-			Silk DIV: {
-				'class'->'text'. 
-				(Silk P: antwort)}}}
-!
-
 augmentPage
 	| intro input button antwort |
-	
+	antwort := self antwortDiv.
 	button := self button.
 	input := self input.
-	intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung. input. button}.
-	antwort := intro DIV.
+	intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung. input. button. antwort}.
+	
 	input on: #keydown bind: [:event | 
 		event keyCode = 13 ifTrue: [
 			self eingabeLoeschen: input ausgabeelement: antwort]].		
