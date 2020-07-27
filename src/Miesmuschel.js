@@ -8,91 +8,7 @@ $pkg.isReady = new Promise(function (resolve, reject) { requirejs(["amber/web/We
 $pkg.transport = {"type":"amd","amdNamespace":"amber-miesmuschel"};
 
 $core.addClass("Miesmuschel", $globals.Object, "Miesmuschel");
-$core.setSlots($globals.Miesmuschel, ["muschelDiv"]);
-$core.addMethod(
-$core.method({
-selector: "alert:after:",
-protocol: "action",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["aString", "aNumberOfMilliseconds"],
-source: "alert: aString after: aNumberOfMilliseconds\x0a\x09[ Terminal alert: aString ] valueWithTimeout: aNumberOfMilliseconds",
-referencedClasses: ["Terminal"],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["valueWithTimeout:", "alert:"]
-}, function ($methodClass){ return function (aString,aNumberOfMilliseconds){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv((function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-return $recv($globals.Terminal)._alert_(aString);
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
-//>>excludeEnd("ctx");
-}))._valueWithTimeout_(aNumberOfMilliseconds);
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"alert:after:",{aString:aString,aNumberOfMilliseconds:aNumberOfMilliseconds})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "antwortBild",
-protocol: "accessing",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "antwortBild\x0a\x0a\x09^ Silk DIV: {\x0a\x09\x09'class'->'antwortbild'. \x0a\x09\x09self zufaelligeAntwort. self muschelDiv resetContents}",
-referencedClasses: ["Silk"],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["DIV:", "->", "zufaelligeAntwort", "resetContents", "muschelDiv"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-return $recv($globals.Silk)._DIV_(["class".__minus_gt("antwortbild"),$self._zufaelligeAntwort(),$recv($self._muschelDiv())._resetContents()]);
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"antwortBild",{})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "antwortBild:",
-protocol: "accessing",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["einBild"],
-source: "antwortBild: einBild\x0a\x09\x0a\x09self muschelDiv resetContents.\x0a\x09self muschelDiv << (Silk DIV: {\x0a\x09\x09'class'->'antwortbild'. \x0a\x09\x09einBild})",
-referencedClasses: ["Silk"],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["resetContents", "muschelDiv", "<<", "DIV:", "->"]
-}, function ($methodClass){ return function (einBild){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv([$self._muschelDiv()
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["muschelDiv"]=1
-//>>excludeEnd("ctx");
-][0])._resetContents();
-$recv($self._muschelDiv()).__lt_lt($recv($globals.Silk)._DIV_(["class".__minus_gt("antwortbild"),einBild]));
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"antwortBild:",{einBild:einBild})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
+$core.setSlots($globals.Miesmuschel, ["muschelDiv", "random"]);
 $core.addMethod(
 $core.method({
 selector: "antwortDiv",
@@ -118,46 +34,11 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
-selector: "antwortText",
-protocol: "accessing",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "antwortText\x0a\x0a\x09^ Silk DIV: {\x0a\x09\x09\x09'class'->'answer'. \x0a\x09\x09\x09'ID'->'answer'. \x0a\x09\x09\x09self sprechblase.\x0a\x09\x09\x09Silk DIV: {\x0a\x09\x09\x09\x09'class'->'text'. \x0a\x09\x09\x09\x09(Silk P: self zufaelligeAntwort)}}",
-referencedClasses: ["Silk"],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["DIV:", "->", "sprechblase", "P:", "zufaelligeAntwort"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-return [$recv($globals.Silk)._DIV_([["class".__minus_gt("answer")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=1
-//>>excludeEnd("ctx");
-][0],["ID".__minus_gt("answer")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["->"]=2
-//>>excludeEnd("ctx");
-][0],$self._sprechblase(),$recv($globals.Silk)._DIV_(["class".__minus_gt("text"),$recv($globals.Silk)._P_($self._zufaelligeAntwort())])])
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["DIV:"]=1
-//>>excludeEnd("ctx");
-][0];
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"antwortText",{})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
 selector: "antwortText:",
 protocol: "accessing",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["einText"],
-source: "antwortText: einText\x0a\x0a\x09^ Silk DIV: {\x0a\x09\x09\x09'class'->'answer'. \x0a\x09\x09\x09'ID'->'answer'. \x0a\x09\x09\x09self sprechblase.\x0a\x09\x09\x09Silk DIV: {\x0a\x09\x09\x09\x09'class'->'text'. \x0a\x09\x09\x09\x09(Silk P: einText)}}",
+source: "antwortText: einText\x0a\x0a\x09^ Silk DIV: {\x0a\x09\x09\x09'class'->'answer'. \x0a\x09\x09\x09'ID'->'answer'. \x0a\x09\x09\x09self sprechblase.\x0a\x09\x09\x09Silk DIV: {\x0a\x09\x09\x09\x09'class'->'text'. \x0a\x09\x09\x09\x09(Silk P: einText)}}\x0a\x09\x09\x09\x09",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
@@ -317,165 +198,6 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
-selector: "doAmberWith",
-protocol: "action",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "doAmberWith\x0a\x09'#output-list' asBrush with: [ :html | html li: 'Amber Web #with: added me!' ]",
-referencedClasses: [],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["with:", "asBrush", "li:"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv("#output-list"._asBrush())._with_((function(html){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-return $recv(html)._li_("Amber Web #with: added me!");
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({html:html},$ctx1,1)});
-//>>excludeEnd("ctx");
-}));
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"doAmberWith",{})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "doConsoleLog",
-protocol: "action",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "doConsoleLog\x0a\x09| greeting target |\x0a\x09greeting := 'Hello'.\x0a\x09target := 'world'.\x0a\x09console log: #{ #greeting -> greeting. #target -> target. #callback -> [ console log: greeting, ', ', target, '!' ] }",
-referencedClasses: [],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["log:", ","]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-var greeting,target;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-greeting="Hello";
-target="world";
-[$recv(console)._log_($globals.HashedCollection._newFromPairs_(["greeting",greeting,"target",target,"callback",(function(){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-return $recv(console)._log_([$recv([$recv($recv(greeting).__comma(", ")).__comma(target)
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx[","]=2
-//>>excludeEnd("ctx");
-][0]).__comma("!")
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx2.sendIdx[","]=1
-//>>excludeEnd("ctx");
-][0]);
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({},$ctx1,1)});
-//>>excludeEnd("ctx");
-})]))
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-,$ctx1.sendIdx["log:"]=1
-//>>excludeEnd("ctx");
-][0];
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"doConsoleLog",{greeting:greeting,target:target})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "doInspectStatus",
-protocol: "action",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "doInspectStatus\x0a\x09(self getApi: '/status')\x0a\x09\x09then: {#json. #inspect}\x0a\x09\x09catch: [ :err | Terminal alert: err ]",
-referencedClasses: ["Terminal"],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["then:catch:", "getApi:", "alert:"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv($self._getApi_("/status"))._then_catch_(["json","inspect"],(function(err){
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx2) {
-//>>excludeEnd("ctx");
-return $recv($globals.Terminal)._alert_(err);
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx2) {$ctx2.fillBlock({err:err},$ctx1,1)});
-//>>excludeEnd("ctx");
-}));
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"doInspectStatus",{})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "doJQueryAppend",
-protocol: "action",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "doJQueryAppend\x0a\x09'#output-list' asJQuery append: '<li>jQuery append added me!</li>'",
-referencedClasses: [],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["append:", "asJQuery"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv("#output-list"._asJQuery())._append_("<li>jQuery append added me!</li>");
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"doJQueryAppend",{})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "doSilkTAG",
-protocol: "action",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "doSilkTAG\x0a\x09'#output-list' asSilk LI: 'Silk TAG: added me!'",
-referencedClasses: [],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["LI:", "asSilk"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-$recv("#output-list"._asSilk())._LI_("Silk TAG: added me!");
-return self;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"doSilkTAG",{})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
 selector: "donkeyShakingHead",
 protocol: "accessing images",
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -504,14 +226,14 @@ $globals.Miesmuschel);
 $core.addMethod(
 $core.method({
 selector: "eingabeLoeschen:ausgabeelement:",
-protocol: "accessing",
+protocol: "actions",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: ["einSilkInput", "einAntwortDiv"],
-source: "eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv\x0a\x09| frage antwort |\x0a\x09\x0a\x09antwort := self zufaelligeAntwort.\x0a\x09frage := einSilkInput element value.\x0a\x09einAntwortDiv resetContents.\x0a\x09einAntwortDiv << (Silk DIV: frage).\x0a\x09(antwort isKindOf: Silk)\x0a\x09\x09ifTrue: [self antwortBild: antwort] \x0a\x09\x09ifFalse: [einAntwortDiv << (self antwortText: antwort)].\x0a\x09einSilkInput element value: ''",
+source: "eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv\x0a\x09| frage antwort |\x0a\x09\x0a\x09antwort := self zufaelligeAntwort.\x0a\x09frage := einSilkInput element value.\x0a\x09einAntwortDiv resetContents.\x0a\x09einAntwortDiv << (Silk DIV: frage).\x0a\x09(antwort isKindOf: Silk)\x0a\x09\x09ifTrue: [self setzeAntwortBild: antwort] \x0a\x09\x09ifFalse: [\x0a\x09\x09\x09self initialisiereMuschelBild.\x0a\x09\x09\x09einAntwortDiv << (self antwortText: antwort)].\x0a\x09einSilkInput element value: ''",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["zufaelligeAntwort", "value", "element", "resetContents", "<<", "DIV:", "ifTrue:ifFalse:", "isKindOf:", "antwortBild:", "antwortText:", "value:"]
+messageSends: ["zufaelligeAntwort", "value", "element", "resetContents", "<<", "DIV:", "ifTrue:ifFalse:", "isKindOf:", "setzeAntwortBild:", "initialisiereMuschelBild", "antwortText:", "value:"]
 }, function ($methodClass){ return function (einSilkInput,einAntwortDiv){
 var self=this,$self=this;
 var frage,antwort;
@@ -531,37 +253,15 @@ $recv(einAntwortDiv)._resetContents();
 //>>excludeEnd("ctx");
 ][0];
 if($core.assert($recv(antwort)._isKindOf_($globals.Silk))){
-$self._antwortBild_(antwort);
+$self._setzeAntwortBild_(antwort);
 } else {
+$self._initialisiereMuschelBild();
 $recv(einAntwortDiv).__lt_lt($self._antwortText_(antwort));
 }
 $recv($recv(einSilkInput)._element())._value_("");
 return self;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"eingabeLoeschen:ausgabeelement:",{einSilkInput:einSilkInput,einAntwortDiv:einAntwortDiv,frage:frage,antwort:antwort})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
-selector: "endpoint",
-protocol: "backend",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: [],
-source: "endpoint\x0a\x09\x22Return something like 'https://<char mess>.execute-api.eu-central-1.amazonaws.com/default'\x22\x0a\x09^ self error: 'Not yet implemented'",
-referencedClasses: [],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["error:"]
-}, function ($methodClass){ return function (){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-return $self._error_("Not yet implemented");
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"endpoint",{})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -618,29 +318,6 @@ $globals.Miesmuschel);
 
 $core.addMethod(
 $core.method({
-selector: "getApi:",
-protocol: "backend",
-//>>excludeStart("ide", pragmas.excludeIdeData);
-args: ["path"],
-source: "getApi: path\x0a\x09^ Platform fetch: self endpoint, path",
-referencedClasses: ["Platform"],
-//>>excludeEnd("ide");
-pragmas: [],
-messageSends: ["fetch:", ",", "endpoint"]
-}, function ($methodClass){ return function (path){
-var self=this,$self=this;
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-return $core.withContext(function($ctx1) {
-//>>excludeEnd("ctx");
-return $recv($globals.Platform)._fetch_($recv($self._endpoint()).__comma(path));
-//>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"getApi:",{path:path})});
-//>>excludeEnd("ctx");
-}; }),
-$globals.Miesmuschel);
-
-$core.addMethod(
-$core.method({
 selector: "hellNo",
 protocol: "accessing images",
 //>>excludeStart("ide", pragmas.excludeIdeData);
@@ -662,6 +339,35 @@ return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/me
 ][0],"alt".__minus_gt("hell no!")]);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"hellNo",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "initialisiereMuschelBild",
+protocol: "actions",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "initialisiereMuschelBild\x0a\x09\x0a\x09self muschelDiv resetContents.\x0a\x09self muschelDiv << {'ID'->'muschel'.  self muschelBild}",
+referencedClasses: [],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["resetContents", "muschelDiv", "<<", "->", "muschelBild"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv([$self._muschelDiv()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["muschelDiv"]=1
+//>>excludeEnd("ctx");
+][0])._resetContents();
+$recv($self._muschelDiv()).__lt_lt(["ID".__minus_gt("muschel"),$self._muschelBild()]);
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"initialisiereMuschelBild",{})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -749,11 +455,11 @@ selector: "muschelDiv",
 protocol: "accessing",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "muschelDiv\x0a\x09^muschelDiv ifNil: [\x0a\x09\x09muschelDiv := Silk DIV: {'ID'->'muschel'. self muschelBild}]",
+source: "muschelDiv\x0a\x09^muschelDiv ifNil: [\x0a\x09\x09muschelDiv := Silk DIV.\x0a\x09\x09self initialisiereMuschelBild.\x0a\x09\x09muschelDiv]",
 referencedClasses: ["Silk"],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["ifNil:", "DIV:", "->", "muschelBild"]
+messageSends: ["ifNil:", "DIV", "initialisiereMuschelBild"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
@@ -762,7 +468,8 @@ return $core.withContext(function($ctx1) {
 var $1;
 $1=$self.muschelDiv;
 if($1 == null || $1.a$nil){
-$self.muschelDiv=$recv($globals.Silk)._DIV_(["ID".__minus_gt("muschel"),$self._muschelBild()]);
+$self.muschelDiv=$recv($globals.Silk)._DIV();
+$self._initialisiereMuschelBild();
 return $self.muschelDiv;
 } else {
 return $1;
@@ -796,6 +503,65 @@ return $recv($globals.Silk)._IMG_([["src".__minus_gt("https://media.giphy.com/me
 ][0],"alt".__minus_gt("oh yeah...")]);
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx1) {$ctx1.fill(self,"ohYeah",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "random",
+protocol: "accessing",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: [],
+source: "random\x0a\x09^ random ifNil: [\x0a\x09\x09random := Random new]\x0a\x09",
+referencedClasses: ["Random"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["ifNil:", "new"]
+}, function ($methodClass){ return function (){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+var $1;
+$1=$self.random;
+if($1 == null || $1.a$nil){
+$self.random=$recv($globals.Random)._new();
+return $self.random;
+} else {
+return $1;
+}
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"random",{})});
+//>>excludeEnd("ctx");
+}; }),
+$globals.Miesmuschel);
+
+$core.addMethod(
+$core.method({
+selector: "setzeAntwortBild:",
+protocol: "actions",
+//>>excludeStart("ide", pragmas.excludeIdeData);
+args: ["einBild"],
+source: "setzeAntwortBild: einBild\x0a\x09\x0a\x09self muschelDiv resetContents.\x0a\x09self muschelDiv << (Silk DIV: {\x0a\x09\x09'class'->'antwortbild'. \x0a\x09\x09einBild})",
+referencedClasses: ["Silk"],
+//>>excludeEnd("ide");
+pragmas: [],
+messageSends: ["resetContents", "muschelDiv", "<<", "DIV:", "->"]
+}, function ($methodClass){ return function (einBild){
+var self=this,$self=this;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+return $core.withContext(function($ctx1) {
+//>>excludeEnd("ctx");
+$recv([$self._muschelDiv()
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+,$ctx1.sendIdx["muschelDiv"]=1
+//>>excludeEnd("ctx");
+][0])._resetContents();
+$recv($self._muschelDiv()).__lt_lt($recv($globals.Silk)._DIV_(["class".__minus_gt("antwortbild"),einBild]));
+return self;
+//>>excludeStart("ctx", pragmas.excludeDebugContexts);
+}, function($ctx1) {$ctx1.fill(self,"setzeAntwortBild:",{einBild:einBild})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);
@@ -891,23 +657,22 @@ selector: "zufaelligeAntwort",
 protocol: "accessing",
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "zufaelligeAntwort\x0a\x09\x22liefert einen zufaelligen String oder zufaelliges Image\x22\x0a\x09\x0a\x09| antwortliste index random|\x0a\x0a\x09antwortliste := self antwortliste.\x0a\x09random := Random new.\x0a\x09index := (random next * (antwortliste size - 1)) rounded.\x0a\x09^ antwortliste at: index + 1\x0a\x09",
-referencedClasses: ["Random"],
+source: "zufaelligeAntwort\x0a\x09\x22liefert einen zufaelligen String oder zufaelliges Image\x22\x0a\x09\x0a\x09| antwortliste index |\x0a\x0a\x09antwortliste := self antwortliste.\x0a\x09index := ( self random next * (antwortliste size - 1)) rounded.\x0a\x09^ antwortliste at: index + 1\x0a\x09",
+referencedClasses: [],
 //>>excludeEnd("ide");
 pragmas: [],
-messageSends: ["antwortliste", "new", "rounded", "*", "next", "-", "size", "at:", "+"]
+messageSends: ["antwortliste", "rounded", "*", "next", "random", "-", "size", "at:", "+"]
 }, function ($methodClass){ return function (){
 var self=this,$self=this;
-var antwortliste,index,random;
+var antwortliste,index;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
 antwortliste=$self._antwortliste();
-random=$recv($globals.Random)._new();
-index=$recv($recv($recv(random)._next()).__star($recv($recv(antwortliste)._size()).__minus((1))))._rounded();
+index=$recv($recv($recv($self._random())._next()).__star($recv($recv(antwortliste)._size()).__minus((1))))._rounded();
 return $recv(antwortliste)._at_($recv(index).__plus((1)));
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
-}, function($ctx1) {$ctx1.fill(self,"zufaelligeAntwort",{antwortliste:antwortliste,index:index,random:random})});
+}, function($ctx1) {$ctx1.fill(self,"zufaelligeAntwort",{antwortliste:antwortliste,index:index})});
 //>>excludeEnd("ctx");
 }; }),
 $globals.Miesmuschel);

@@ -1,40 +1,14 @@
 Smalltalk createPackage: 'Miesmuschel'!
 (Smalltalk packageAt: 'Miesmuschel' ifAbsent: [ self error: 'Package not created: Miesmuschel' ]) imports: {'amber/web/Web'. 'amber/web/Web-JQuery'. 'silk/Silk'}!
 Object subclass: #Miesmuschel
-	slots: {#muschelDiv}
+	slots: {#muschelDiv. #random}
 	package: 'Miesmuschel'!
 
 !Miesmuschel methodsFor: 'accessing'!
 
-antwortBild
-
-	^ Silk DIV: {
-		'class'->'antwortbild'. 
-		self zufaelligeAntwort. self muschelDiv resetContents}
-!
-
-antwortBild: einBild
-	
-	self muschelDiv resetContents.
-	self muschelDiv << (Silk DIV: {
-		'class'->'antwortbild'. 
-		einBild})
-!
-
 antwortDiv
 
 	^ Silk DIV.
-!
-
-antwortText
-
-	^ Silk DIV: {
-			'class'->'answer'. 
-			'ID'->'answer'. 
-			self sprechblase.
-			Silk DIV: {
-				'class'->'text'. 
-				(Silk P: self zufaelligeAntwort)}}
 !
 
 antwortText: einText
@@ -68,19 +42,6 @@ button
 	^ Silk BUTTON: '♥'.
 !
 
-eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv
-	| frage antwort |
-	
-	antwort := self zufaelligeAntwort.
-	frage := einSilkInput element value.
-	einAntwortDiv resetContents.
-	einAntwortDiv << (Silk DIV: frage).
-	(antwort isKindOf: Silk)
-		ifTrue: [self antwortBild: antwort] 
-		ifFalse: [einAntwortDiv << (self antwortText: antwort)].
-	einSilkInput element value: ''
-!
-
 frageAufforderung
 	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
 !
@@ -91,17 +52,23 @@ input
 
 muschelDiv
 	^muschelDiv ifNil: [
-		muschelDiv := Silk DIV: {'ID'->'muschel'. self muschelBild}]
+		muschelDiv := Silk DIV.
+		self initialisiereMuschelBild.
+		muschelDiv]
+!
+
+random
+	^ random ifNil: [
+		random := Random new]
 !
 
 zufaelligeAntwort
 	"liefert einen zufaelligen String oder zufaelliges Image"
 	
-	| antwortliste index random|
+	| antwortliste index |
 
 	antwortliste := self antwortliste.
-	random := Random new.
-	index := (random next * (antwortliste size - 1)) rounded.
+	index := ( self random next * (antwortliste size - 1)) rounded.
 	^ antwortliste at: index + 1
 ! !
 
@@ -168,46 +135,35 @@ wellWell
 		'alt'->'well well'}
 ! !
 
-!Miesmuschel methodsFor: 'action'!
+!Miesmuschel methodsFor: 'actions'!
 
-alert: aString after: aNumberOfMilliseconds
-	[ Terminal alert: aString ] valueWithTimeout: aNumberOfMilliseconds
+eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv
+	| frage antwort |
+	
+	antwort := self zufaelligeAntwort.
+	frage := einSilkInput element value.
+	einAntwortDiv resetContents.
+	einAntwortDiv << (Silk DIV: frage).
+	(antwort isKindOf: Silk)
+		ifTrue: [self setzeAntwortBild: antwort] 
+		ifFalse: [
+			self initialisiereMuschelBild.
+			einAntwortDiv << (self antwortText: antwort)].
+	einSilkInput element value: ''
 !
 
-doAmberWith
-	'#output-list' asBrush with: [ :html | html li: 'Amber Web #with: added me!!' ]
+initialisiereMuschelBild
+	
+	self muschelDiv resetContents.
+	self muschelDiv << {'ID'->'muschel'.  self muschelBild}
 !
 
-doConsoleLog
-	| greeting target |
-	greeting := 'Hello'.
-	target := 'world'.
-	console log: #{ #greeting -> greeting. #target -> target. #callback -> [ console log: greeting, ', ', target, '!!' ] }
-!
-
-doInspectStatus
-	(self getApi: '/status')
-		then: {#json. #inspect}
-		catch: [ :err | Terminal alert: err ]
-!
-
-doJQueryAppend
-	'#output-list' asJQuery append: '<li>jQuery append added me!!</li>'
-!
-
-doSilkTAG
-	'#output-list' asSilk LI: 'Silk TAG: added me!!'
-! !
-
-!Miesmuschel methodsFor: 'backend'!
-
-endpoint
-	"Return something like 'https://<char mess>.execute-api.eu-central-1.amazonaws.com/default'"
-	^ self error: 'Not yet implemented'
-!
-
-getApi: path
-	^ Platform fetch: self endpoint, path
+setzeAntwortBild: einBild
+	
+	self muschelDiv resetContents.
+	self muschelDiv << (Silk DIV: {
+		'class'->'antwortbild'. 
+		einBild})
 ! !
 
 !Miesmuschel methodsFor: 'starting'!
