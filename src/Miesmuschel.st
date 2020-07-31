@@ -1,14 +1,15 @@
 Smalltalk createPackage: 'Miesmuschel'!
 (Smalltalk packageAt: 'Miesmuschel' ifAbsent: [ self error: 'Package not created: Miesmuschel' ]) imports: {'amber/web/Web'. 'amber/web/Web-JQuery'. 'silk/Silk'}!
 Object subclass: #Miesmuschel
-	slots: {#muschelDiv. #random}
+	slots: {#muschelDiv. #random. #antwortDiv. #input. #button}
 	package: 'Miesmuschel'!
 
 !Miesmuschel methodsFor: 'accessing'!
 
 antwortDiv
-
-	^ Silk DIV.
+	"Behälter für Frage, Text und Sprechblase"
+	^ antwortDiv ifNil: [
+		antwortDiv := Silk DIV]
 !
 
 antwortText: einText
@@ -35,11 +36,14 @@ antwortliste
 		self frustratedKermit. 
 		self crazyYeah. 
 		self shrekAndDonkey. 
-		self donkeyShakingHead}
+		self donkeyShakingHead.
+		self thumbsUp.
+		self slothNo}
 !
 
 button
-	^ Silk BUTTON: '♥'.
+	^ button ifNil: [
+		button := Silk BUTTON: '♥']
 !
 
 frageAufforderung
@@ -47,7 +51,9 @@ frageAufforderung
 !
 
 input
-	^ Silk INPUT: {'class'->'input'}
+	"Eingabefeld für Frage"
+	^ input ifNil: [
+		input := Silk INPUT: {'class'->'input'}]
 !
 
 muschelDiv
@@ -122,11 +128,23 @@ shrekAndDonkey
 		'alt'->'shrek n donkey'}
 !
 
+slothNo 
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/RddAJiGxTPQFa/giphy.gif'. 
+		'alt'->'how about... no'}
+!
+
 sprechblase
 	^ Silk IMG: {
 		'ID'->'blase'. 
 		'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 
 		'alt'->'Sprechblase'}
+!
+
+thumbsUp
+	^ Silk IMG: {
+		'src'->'https://media.giphy.com/media/Sr9NHwRKlsD3unMK43/giphy.gif'. 
+		'alt'->'thumbs up'}
 !
 
 wellWell
@@ -136,21 +154,6 @@ wellWell
 ! !
 
 !Miesmuschel methodsFor: 'actions'!
-
-eingabeLoeschen: einSilkInput ausgabeelement: einAntwortDiv
-	| frage antwort |
-	
-	antwort := self zufaelligeAntwort.
-	frage := einSilkInput element value.
-	einAntwortDiv resetContents.
-	einAntwortDiv << (Silk DIV: frage).
-	(antwort isKindOf: Silk)
-		ifTrue: [self setzeAntwortBild: antwort] 
-		ifFalse: [
-			self initialisiereMuschelBild.
-			einAntwortDiv << (self antwortText: antwort)].
-	einSilkInput element value: ''
-!
 
 initialisiereMuschelBild
 	
@@ -164,22 +167,41 @@ setzeAntwortBild: einBild
 	self muschelDiv << (Silk DIV: {
 		'class'->'antwortbild'. 
 		einBild})
+!
+
+zeigeAntwort
+	| frage antwort |
+	
+	frage := self input element value.
+	antwort := self zufaelligeAntwort.
+	self antwortDiv resetContents.
+	self antwortDiv << (Silk DIV: frage).
+	(antwort isKindOf: Silk)
+		ifTrue: [self setzeAntwortBild: antwort] 
+		ifFalse: [
+			self initialisiereMuschelBild.
+			self antwortDiv << (self antwortText: antwort)].
+	self input element value: ''
 ! !
 
 !Miesmuschel methodsFor: 'starting'!
 
 augmentPage
-	| intro input button antwort |
-	antwort := self antwortDiv.
-	button := self button.
-	input := self input.
-	intro := Silk new DIV: {'class'->'intro'. self muschelDiv.  self frageAufforderung. input. button. antwort}.
+
+	self button.
+	Silk new DIV: {
+		'class'->'intro'.
+		self muschelDiv.
+		self frageAufforderung.
+		self input.
+		self button.
+		self antwortDiv}.
 	
-	input on: #keydown bind: [:event | 
+	self input on: #keydown bind: [:event | 
 		event keyCode = 13 ifTrue: [
-			self eingabeLoeschen: input ausgabeelement: antwort]].		
-	button on: #click bind: [
-		self eingabeLoeschen: input ausgabeelement: antwort]
+			self zeigeAntwort]].		
+	self button on: #click bind: [
+		self zeigeAntwort]
 ! !
 
 !Miesmuschel class methodsFor: 'starting'!
