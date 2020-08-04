@@ -43,7 +43,11 @@ antwortliste
 
 button
 	^ button ifNil: [
-		button := Silk BUTTON: '♥']
+		| tempButton |
+		tempButton := Silk BUTTON: '♥'.
+		tempButton on: #click bind: [
+			self zeigeAntwort]. 
+		button := tempButton]
 !
 
 frageAufforderung
@@ -58,7 +62,13 @@ gespeicherteAntworten
 input
 	"Eingabefeld für Frage"
 	^ input ifNil: [
-		input := Silk INPUT: {'class'->'input'}]
+		| tempInput |
+		tempInput := Silk INPUT: {'class'->'input'}.
+		
+		tempInput on: #keydown bind: [:event | 
+			event keyCode = 13 ifTrue: [
+				self zeigeAntwort]]. 
+		input := tempInput]
 !
 
 muschelDiv
@@ -174,15 +184,6 @@ ermittleAntwort
 	^ antwort
 !
 
-initialisiereAntwortDiv
-	| frage |
-	
-	frage := self input element value.
-	self antwortDiv resetContents.
-	self antwortDiv << (Silk DIV: frage).
-	self input element value: ''
-!
-
 initialisiereMuschelBild
 	
 	self muschelDiv resetContents.
@@ -198,10 +199,15 @@ setzeAntwortBild: einBild
 !
 
 zeigeAntwort
-	| antwort |
+	| antwort frage |
 	
+	self antwortDiv resetContents.
+	frage := self input element value ifEmpty: [
+		self initialisiereMuschelBild.
+		^ self].
 	antwort := self ermittleAntwort.
-	self initialisiereAntwortDiv.
+	self antwortDiv << (Silk DIV: frage).
+	self input element value: ''.
 	(antwort isKindOf: Silk)
 		ifTrue: [self setzeAntwortBild: antwort] 
 		ifFalse: [
@@ -213,20 +219,13 @@ zeigeAntwort
 
 augmentPage
 
-	self button.
 	Silk new DIV: {
 		'class'->'intro'.
 		self muschelDiv.
 		self frageAufforderung.
 		self input.
 		self button.
-		self antwortDiv}.
-	"(self input element value ~= '')"
-		self input on: #keydown bind: [:event | 
-			event keyCode = 13 ifTrue: [
-				self zeigeAntwort]].		
-		self button on: #click bind: [
-			self zeigeAntwort]
+		self antwortDiv}
 ! !
 
 !Miesmuschel methodsFor: 'testing'!
