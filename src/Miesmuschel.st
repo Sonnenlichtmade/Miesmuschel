@@ -1,7 +1,7 @@
 Smalltalk createPackage: 'Miesmuschel'!
 (Smalltalk packageAt: 'Miesmuschel' ifAbsent: [ self error: 'Package not created: Miesmuschel' ]) imports: {'amber/web/Web'. 'amber/web/Web-JQuery'. 'silk/Silk'}!
 Object subclass: #Miesmuschel
-	slots: {#muschelDiv. #random. #antwortDiv. #input. #button}
+	slots: {#muschelDiv. #random. #antwortDiv. #input. #button. #gespeicherteAntworten}
 	package: 'Miesmuschel'!
 
 !Miesmuschel methodsFor: 'accessing'!
@@ -48,6 +48,11 @@ button
 
 frageAufforderung
 	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
+!
+
+gespeicherteAntworten
+	^ gespeicherteAntworten ifNil: [
+		gespeicherteAntworten := OrderedCollection new]
 !
 
 input
@@ -155,6 +160,29 @@ wellWell
 
 !Miesmuschel methodsFor: 'actions'!
 
+ermittleAntwort
+	"gibt eine andere Antwort aus, als die letzten 3 Antworten"
+	
+	| antwort |
+	
+	antwort := self zufaelligeAntwort.
+	(self enthaltenInCollection: antwort) ifTrue: [
+		^ self ermittleAntwort].
+	self gespeicherteAntworten addFirst: antwort.
+	(self gespeicherteAntworten size = 4) ifTrue: [
+		self gespeicherteAntworten removeLast].
+	^ antwort
+!
+
+initialisiereAntwortDiv
+	| frage |
+	
+	frage := self input element value.
+	self antwortDiv resetContents.
+	self antwortDiv << (Silk DIV: frage).
+	self input element value: ''
+!
+
 initialisiereMuschelBild
 	
 	self muschelDiv resetContents.
@@ -170,18 +198,15 @@ setzeAntwortBild: einBild
 !
 
 zeigeAntwort
-	| frage antwort |
+	| antwort |
 	
-	frage := self input element value.
-	antwort := self zufaelligeAntwort.
-	self antwortDiv resetContents.
-	self antwortDiv << (Silk DIV: frage).
+	antwort := self ermittleAntwort.
+	self initialisiereAntwortDiv.
 	(antwort isKindOf: Silk)
 		ifTrue: [self setzeAntwortBild: antwort] 
 		ifFalse: [
 			self initialisiereMuschelBild.
 			self antwortDiv << (self antwortText: antwort)].
-	self input element value: ''
 ! !
 
 !Miesmuschel methodsFor: 'starting'!
@@ -196,12 +221,32 @@ augmentPage
 		self input.
 		self button.
 		self antwortDiv}.
+	"(self input element value ~= '')"
+		self input on: #keydown bind: [:event | 
+			event keyCode = 13 ifTrue: [
+				self zeigeAntwort]].		
+		self button on: #click bind: [
+			self zeigeAntwort]
+! !
+
+!Miesmuschel methodsFor: 'testing'!
+
+enthaltenInCollection: eineAntwort
+	"^ <Boolean>"
 	
-	self input on: #keydown bind: [:event | 
-		event keyCode = 13 ifTrue: [
-			self zeigeAntwort]].		
-	self button on: #click bind: [
-		self zeigeAntwort]
+	"findet heraus, ob Antwort in Collection enthalten ist"
+	^ self gespeicherteAntworten anySatisfy: [ :gespeicherteAntwort |
+		self ist: gespeicherteAntwort gleich: eineAntwort ]
+!
+
+ist: eineAlteAntwort gleich: eineNeueAntwort
+	"testet, ob die gespeicherte Antwort identisch mit der neuen ist"
+	
+	 eineAlteAntwort class = eineNeueAntwort class ifFalse: [
+		^ false].
+	(eineAlteAntwort isKindOf: Silk) ifTrue: [
+		^ eineAlteAntwort element src = eineNeueAntwort element src].
+	^ eineAlteAntwort = eineNeueAntwort
 ! !
 
 !Miesmuschel class methodsFor: 'starting'!
@@ -211,6 +256,6 @@ start
 !
 
 todo
-^'Eingabefeld bei Klick löschen'
+^'Keine Aktion bei leerem Inputfield'
 ! !
 
