@@ -12,17 +12,6 @@ antwortDiv
 		antwortDiv := Silk DIV]
 !
 
-antwortText: einText
-
-	^ Silk DIV: {
-			'class'->'answer'. 
-			'ID'->'answer'. 
-			self sprechblase.
-			Silk DIV: {
-				'class'->'text'. 
-				(Silk P: einText)}}
-!
-
 antwortliste
 	^ {
 		'Heute nicht...'. 
@@ -48,10 +37,6 @@ button
 		tempButton on: #click bind: [
 			self zeigeAntwort]. 
 		button := tempButton]
-!
-
-frageAufforderung
-	^ Silk DIV: 'Gib eine Ja/Nein-Frage ein:'
 !
 
 gespeicherteAntworten
@@ -151,7 +136,6 @@ slothNo
 
 sprechblase
 	^ Silk IMG: {
-		'ID'->'blase'. 
 		'src'->'https://www.freeiconspng.com/uploads/speech-bubble-png-22.png'. 
 		'alt'->'Sprechblase'}
 !
@@ -198,21 +182,28 @@ setzeAntwortBild: einBild
 		einBild})
 !
 
+setzeAntwortText: einText
+
+	self initialisiereMuschelBild.
+	self antwortDiv << (Silk DIV: {'class'->'answer'.
+		self sprechblase.
+		Silk DIV: {'class'->'text'. 
+			(Silk P: einText)}})
+!
+
 zeigeAntwort
-	| antwort frage |
+	| frage antwort |
 	
 	self antwortDiv resetContents.
 	frage := self input element value ifEmpty: [
 		self initialisiereMuschelBild.
 		^ self].
-	antwort := self ermittleAntwort.
-	self antwortDiv << (Silk DIV: frage).
 	self input element value: ''.
+	self antwortDiv << (Silk DIV: frage).
+	antwort := self ermittleAntwort.
 	(antwort isKindOf: Silk)
 		ifTrue: [self setzeAntwortBild: antwort] 
-		ifFalse: [
-			self initialisiereMuschelBild.
-			self antwortDiv << (self antwortText: antwort)].
+		ifFalse: [self setzeAntwortText: antwort]
 ! !
 
 !Miesmuschel methodsFor: 'starting'!
@@ -222,7 +213,7 @@ augmentPage
 	Silk new DIV: {
 		'class'->'intro'.
 		self muschelDiv.
-		self frageAufforderung.
+		Silk DIV: 'Gib eine Ja/Nein-Frage ein:'.
 		self input.
 		self button.
 		self antwortDiv}
